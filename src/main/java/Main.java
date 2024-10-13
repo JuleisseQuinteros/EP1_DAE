@@ -60,7 +60,14 @@ public class Main {
                     System.out.print("Ingrese la facultad: ");
                     String facultad = scanner.nextLine();
 
-                    Alumno alumno = new Alumno(codigo, nombres, apellidos, correo, escuela, facultad);
+                    System.out.print("Ingrese su fecha de nacimiento (dd/MM/yyyy): ");
+                    String fechaNacimiento = scanner.nextLine();
+
+                    Alumno alumno = new Alumno(codigo, nombres, apellidos, correo, escuela, facultad, fechaNacimiento);
+                    if (!alumno.esMayorDeEdad()) {
+                        System.out.println("No está permitido el registro de menores de edad.");
+                        break;
+                    }
                     alumnoDAO.registrarAlumno(alumno);
                     System.out.println("Alumno registrado exitosamente.");
                     break;

@@ -9,7 +9,7 @@ public class AlumnoDAO {
 
     // Registrar un nuevo alumno
     public void registrarAlumno(Alumno alumno) {
-        String sql = "INSERT INTO alumno (codigo, nombres, apellidos, correo, escuela, facultad) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO alumno (codigo, nombres, apellidos, correo, escuela, facultad, fecha_nacimiento) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionBd.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -21,7 +21,7 @@ public class AlumnoDAO {
                 pstmt.setString(4, alumno.getCorreo());
                 pstmt.setString(5, alumno.getEscuela());
                 pstmt.setString(6, alumno.getFacultad());
-
+                pstmt.setString(7, String.valueOf(alumno.getFechaNacimiento()));
                 pstmt.executeUpdate();
             }
 
@@ -49,6 +49,7 @@ public class AlumnoDAO {
                 alumno.setCorreo(rs.getString("correo"));
                 alumno.setEscuela(rs.getString("escuela"));
                 alumno.setFacultad(rs.getString("facultad"));
+                alumno.setFechaNacimiento(rs.getString("fecha_nacimiento"));
                 listaAlumnos.add(alumno);
             }
         } catch (SQLException e) {
