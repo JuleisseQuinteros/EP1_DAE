@@ -49,7 +49,12 @@ public class AlumnoDAO {
                 alumno.setCorreo(rs.getString("correo"));
                 alumno.setEscuela(rs.getString("escuela"));
                 alumno.setFacultad(rs.getString("facultad"));
-                alumno.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+                String fechaNacimiento = rs.getString("fecha_nacimiento");
+                if (fechaNacimiento != null) {
+                    alumno.setFechaNacimiento(fechaNacimiento);
+                } else {
+                    alumno.setFechaNacimiento("---");
+                }
                 listaAlumnos.add(alumno);
             }
         } catch (SQLException e) {

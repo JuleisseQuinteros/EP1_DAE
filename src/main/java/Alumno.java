@@ -99,7 +99,6 @@ public class Alumno {
             try {
                 return LocalDate.parse(fechaStr, formatter);
             } catch (DateTimeParseException e) {
-                System.err.println("Error al convertir la fecha: " + fechaStr + ". Formato inválido.");
                 return null;
             }
         } else {
